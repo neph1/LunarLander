@@ -1,0 +1,69 @@
+Material Moon : Common/MatDefs/Terrain/PBRTerrain.j3md {
+     MaterialParameters {
+        useTriPlanarMapping : false
+        AlphaMap : Repeat "Textures/white.png"
+        AfflictionSplatScale : 8
+        AfflictionRoughnessValue : 1.0
+        AfflictionMetallicValue : 0.0
+        AfflictionEmissiveValue : 0.0
+        NormalType : -1.0
+        UseSpecularAA : true
+        AfflictionEmissiveColor : 0.0 0.0 0.0 0.0
+        TileWidth : 0
+        AfflictionMode_0 : 1
+        AfflictionMode_1 : 1
+        AfflictionMode_2 : 1
+        AfflictionMode_3 : 1
+        AfflictionMode_4 : 1
+        AfflictionMode_5 : 1
+        AfflictionMode_6 : 1
+        AfflictionMode_7 : 1
+        AfflictionMode_8 : 1
+        AfflictionMode_9 : 1
+        AfflictionMode_10 : 1
+        AfflictionMode_11 : 1
+        Roughness_0 : 1.0
+        Roughness_1 : 0.0
+        Roughness_2 : 0.0
+        Roughness_3 : 0.0
+        Roughness_4 : 0.0
+        Roughness_5 : 0.0
+        Roughness_6 : 0.0
+        Roughness_7 : 0.0
+        Roughness_8 : 0.0
+        Roughness_9 : 0.0
+        Roughness_10 : 0.0
+        Roughness_11 : 0.0
+        Metallic_0 : 0.0
+        Metallic_1 : 0.0
+        Metallic_2 : 0.0
+        Metallic_3 : 0.0
+        Metallic_4 : 0.0
+        Metallic_5 : 0.0
+        Metallic_6 : 0.0
+        Metallic_7 : 0.0
+        Metallic_8 : 0.0
+        Metallic_9 : 0.0
+        Metallic_10 : 0.0
+        Metallic_11 : 0.0
+        EmissiveColor_0 : 0.0 0.0 0.0 0.0
+        EmissiveColor_1 : 0.0 0.0 0.0 0.0
+        EmissiveColor_2 : 0.0 0.0 0.0 0.0
+        EmissiveColor_3 : 0.0 0.0 0.0 0.0
+        EmissiveColor_4 : 0.0 0.0 0.0 0.0
+        EmissiveColor_5 : 0.0 0.0 0.0 0.0
+        EmissiveColor_6 : 0.0 0.0 0.0 0.0
+        EmissiveColor_7 : 0.0 0.0 0.0 0.0
+        EmissiveColor_8 : 0.0 0.0 0.0 0.0
+        EmissiveColor_9 : 0.0 0.0 0.0 0.0
+        EmissiveColor_10 : 0.0 0.0 0.0 0.0
+        EmissiveColor_11 : 0.0 0.0 0.0 0.0
+        BackfaceShadows : false
+        AlbedoMap_0 : Repeat "Textures/moon_01_diff_2k.jpg"
+        NormalMap_0 : Repeat "Textures/moon_01_nor_gl_2k.jpg"
+        HardwareShadows : true
+        AlbedoMap_0_scale : 4.0
+     }
+    AdditionalRenderState {
+    }
+}

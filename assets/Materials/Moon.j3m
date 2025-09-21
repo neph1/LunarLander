@@ -1,0 +1,15 @@
+Material Moon : Common/MatDefs/Terrain/TerrainLighting.j3md {
+     MaterialParameters {
+        Shininess : 0.0
+        DiffuseMap : Repeat "Textures/moon_01_diff_2k.jpg"
+        NormalMap : Repeat "Textures/moon_01_nor_gl_2k.jpg"
+        useDiffuseAlpha : false
+        DiffuseMap_0_scale : 2.0
+        Ambient : 0.0 0.0 0.0 1.0
+        useTriPlanarMapping : false
+        WardIso : false
+        AlphaMap : Repeat "Textures/white.png"
+     }
+    AdditionalRenderState {
+    }
+}

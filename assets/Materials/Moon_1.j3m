@@ -1,0 +1,14 @@
+Material Moon : Common/MatDefs/Light/Lighting.j3md {
+     MaterialParameters {
+        Shininess : 0.0
+        DiffuseMap : Repeat "Textures/moon_01_diff_2k.jpg"
+        NormalMap : Repeat "Textures/moon_01_nor_gl_2k.jpg"
+        Ambient : 0.0 0.0 0.0 1.0
+        ParallaxHeight : 0.05
+        BackfaceShadows : true
+        HardwareShadows : true
+        UseMaterialColors : false
+     }
+    AdditionalRenderState {
+    }
+}
