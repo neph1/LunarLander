@@ -20,15 +20,21 @@ import java.util.Map;
 
 public class JoystickHandler extends BaseAppState {
 
+    private static final float ROTATION_SPEED = 5.0f;
+    private static final float THRUST_FORCE = 5000.0f;
+
     private InputManager inputManager;
-    private CameraNode camera;
-    private Vector3f lookDirection = new Vector3f();
-    private LunarLander lander;
+    private final CameraNode camera;
+    private final Vector3f lookDirection = new Vector3f();
+    private final LunarLander lander;
 
     private float cameraHorizontal;
     private float cameraVertical;
     private float landerY;
     private float landerZ;
+    private float landerYStart;
+    private float landerZStart;
+    private float thrust;
 
     public JoystickHandler(CameraNode camera, LunarLander lander) {
         this.camera = camera;
@@ -50,7 +56,8 @@ public class JoystickHandler extends BaseAppState {
         super.update(tpf);
         lookDirection.normalizeLocal();
         camera.setLocalRotation(new Quaternion().fromAngles(cameraVertical * 2f, -cameraHorizontal * 2f, 0));
-        lander.applyRotation(landerY * 2f, landerZ * 2f, 0);
+        lander.applyRotation(landerY * tpf * ROTATION_SPEED, -landerZ * tpf * ROTATION_SPEED, 0);
+        lander.applyThrust(thrust * tpf * THRUST_FORCE);
     }
 
     @Override
@@ -71,7 +78,7 @@ public class JoystickHandler extends BaseAppState {
         final private Map<JoystickAxis, Float> lastValues = new HashMap<>();
 
         JoystickEventListener() {
-
+            inputManager.setAxisDeadZone(0.2f);
         }
 
         @Override
@@ -79,10 +86,19 @@ public class JoystickHandler extends BaseAppState {
             Float last = lastValues.remove(evt.getAxis());
             float value = evt.getValue();
 
+            final String eventName = evt.getAxis().getName();
             // Check the axis dead zone.  InputManager normally does this
             // by default but not for raw events like we get here.
             float effectiveDeadZone = Math.max(inputManager.getAxisDeadZone(), evt.getAxis().getDeadZone());
-            if (Math.abs(value) < effectiveDeadZone) {
+            if (Math.abs(value) < effectiveDeadZone * 10f && eventName.equals("rz")) {
+                if (last == null) {
+                    // Just skip the event
+                    return;
+                }
+                // Else set the value to 0
+                lastValues.remove(evt.getAxis());
+                value = 0;
+            } else if (Math.abs(value) < effectiveDeadZone * 2f && (eventName.equals("pov_x") || eventName.equals("pov_y"))) {
                 if (last == null) {
                     // Just skip the event
                     return;
@@ -91,20 +107,28 @@ public class JoystickHandler extends BaseAppState {
                 lastValues.remove(evt.getAxis());
                 value = 0;
             }
-            if (value == 0) {
-                return;
-            }
-            if (evt.getAxis().getName().equals("pov_x")) {
-                cameraHorizontal = value;
-            }
-            if (evt.getAxis().getName().equals("pov_y")) {
-                cameraVertical = value;
-            }
-            if (evt.getAxis().getName().equals("z")) {
-                landerY = value;
-            }
-            if (evt.getAxis().getName().equals("rz")) {
-                landerZ = value;
+
+            switch (eventName) {
+                case "pov_x" ->
+                    cameraHorizontal += value * 0.02f;
+                case "pov_y" ->
+                    cameraVertical += value * 0.02f;
+                case "4" -> {
+                    if (landerYStart == 0) {
+                        landerYStart = value;
+                    }
+                    landerY = (value - landerYStart);
+                }
+                case "rz" -> {
+                    if (landerZStart == 0) {
+                        landerZStart = value;
+                    }
+                    landerZ = (value - landerZStart);
+                }
+                case "5" ->
+                    thrust = value;
+                default -> {
+                }
             }
         }
 

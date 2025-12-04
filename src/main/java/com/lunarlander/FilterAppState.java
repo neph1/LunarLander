@@ -51,8 +51,9 @@ public class FilterAppState extends BaseAppState {
         filter.setShadowIntensity(1f);
         filter.setLambda(0.5f);
         filter.setShadowZExtend(500);
+
         processor.addFilter(filter);
-        LightScatteringFilter lightScatteringFilter = new LightScatteringFilter(light.getDirection().negate().mult(1000));
+        LightScatteringFilter lightScatteringFilter = new LightScatteringFilter(light.getDirection().mult(1000));
         processor.addFilter(lightScatteringFilter);
     }
 

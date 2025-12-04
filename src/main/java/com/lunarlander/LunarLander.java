@@ -24,7 +24,7 @@ public class LunarLander extends Node {
     private Material landerMaterial;
     private ParticleEmitter exhaust;
 
-    private float fuel = 1000.0f;
+    private float fuel = 2000.0f;
     
     public LunarLander(AssetManager assetManager) {
         super("LunarLander");

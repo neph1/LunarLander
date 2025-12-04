@@ -18,9 +18,7 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
-import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
-import com.jme3.terrain.geomipmap.lodcalc.DistanceLodCalculator;
 import com.jme3.terrain.noise.ShaderUtils;
 import com.jme3.terrain.noise.basis.FilteredBasis;
 import com.jme3.terrain.noise.filter.IterativeFilter;
@@ -60,7 +58,7 @@ public class TerrainAppState extends BaseAppState {
 
             LunarTerrainGenerator terrainGenerator = new LunarTerrainGenerator(FastMath.nextRandomInt());
 
-            terrain = new TerrainQuad("LunarTerrain", 256, size, terrainGenerator.generate(size, 0.5f, 0.75f, 0, 0));
+            terrain = new TerrainQuad("LunarTerrain", 256, size, terrainGenerator.generate(size, 0.5f, 0.35f, 0, 0));
             Material mat = assetManager.loadMaterial("Materials/Moon_2.j3m");
             terrain.setMaterial(mat);
             terrain.setLocalScale(2, 1, 2);
@@ -68,16 +66,12 @@ public class TerrainAppState extends BaseAppState {
 
             rootNode.attachChild(terrain);
 
-            terrain2 = new TerrainQuad("LunarTerrain", 256, size, terrainGenerator.generate(size, 0.5f, 0.75f, 0, size));
+            terrain2 = new TerrainQuad("LunarTerrain", 256, size, terrainGenerator.generate(size, 0.5f, 0.35f, 0, -size));
             terrain2.setMaterial(mat);
             terrain2.move(0, 0, 2048);
             terrain2.setLocalScale(2, 1, 2);
             terrain2.setShadowMode(RenderQueue.ShadowMode.CastAndReceive);
             rootNode.attachChild(terrain2);
-            TerrainLodControl control
-                    = new TerrainLodControl(terrain2, app.getCamera());
-            control.setLodCalculator(new DistanceLodCalculator(127, 2.7f)); // patch size, and a multiplier
-            terrain2.addControl(control);
             tileReady = true;
 
         } catch (Exception ex) {
