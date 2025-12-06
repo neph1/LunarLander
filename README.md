@@ -24,4 +24,6 @@ Supports controllers (only tested with X360). No key assignment. Left stick look
 Can also be played with WASD + space for thrust. (easier).
 
 
+Acknowledgements:
 
+Moon surface texture from PolyHaven (CC0).
