@@ -6,7 +6,6 @@ package com.lunarlander;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.BaseAppState;
-import com.jme3.audio.AudioData;
 import com.jme3.audio.AudioNode;
 
 /**
@@ -20,20 +19,20 @@ public class SoundAppState extends BaseAppState {
 
     @Override
     protected void initialize(Application aplctn) {
-        exhaustSound = new AudioNode(aplctn.getAssetManager(), "Sounds/powder_loop.ogg", AudioData.DataType.Buffer);
-        explosion = new AudioNode(aplctn.getAssetManager(), "Sounds/explosion_blast1.ogg", AudioData.DataType.Buffer);
+//        exhaustSound = new AudioNode(aplctn.getAssetManager(), "Sounds/powder_loop.ogg", AudioData.DataType.Buffer);
+//        explosion = new AudioNode(aplctn.getAssetManager(), "Sounds/explosion_blast1.ogg", AudioData.DataType.Buffer);
     }
 
     public void playExhaustSound() {
-        exhaustSound.play();
+//        exhaustSound.play();
     }
 
     public void stopExhaustSound() {
-        exhaustSound.stop();
+//        exhaustSound.stop();
     }
 
     public void playExplosion() {
-        explosion.playInstance();
+//        explosion.playInstance();
     }
 
     @Override
